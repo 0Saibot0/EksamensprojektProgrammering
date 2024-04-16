@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.config["SESSION_PERMANENT"] = False
 app.config["SECRET_TYPE"] = "filesystem"
-Session(app)
 
 
 @app.route('/', methods=["POST", "GET"])
