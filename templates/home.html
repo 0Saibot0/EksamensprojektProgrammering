@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
+    <!-- Setting up basic information of site -->
     <head>
         <title>HOMEPAGGGEE</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
 
+    <!--  -->
+    {% extends "header.html" %}
+    {% block content %}
 
     <body>
+        <div class="main_page_left">
+            <h1>HI</h1>
+        </div>
+
+        <div class="main_page_right">
+            <h1>Test</h1>
+        </div>
+
         <h1>Test Site</h1>
         <p>This is a test site</p>
     </body>
+    {% endblock %}
+
 </html>

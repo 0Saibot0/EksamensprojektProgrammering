@@ -1,0 +1,33 @@
+/* Using "*" to change the parameters of everything since it was preset for some objects*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Splitting the site in right and left */
+.main_page_left {
+    height: 100%;
+    width: 40%;
+    float: left;
+    background-color: blueviolet;
+}
+
+.main_page_right {
+    height: 100%;
+    width: 60%;
+    background-color: aqua;
+    float: right;
+}
+
+/* The little bar at the very top of the site */
+.session_login {
+    height: 2.5vh;
+    font-size: 2vh;
+    background-color: greenyellow;
+}
+
+/* The navigation menu, where you can choose and go to different places on the website */
+.navigation {
+    height: 10vh;
+    background-color: grey;
+}
