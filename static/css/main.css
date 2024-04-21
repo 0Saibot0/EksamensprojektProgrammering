@@ -6,15 +6,15 @@
 
 /* Splitting the site in right and left */
 .main_page_left {
-    height: 100%;
-    width: 40%;
+    height: 97.5vh;
+    width: 70%;
     float: left;
     background-color: blueviolet;
 }
 
 .main_page_right {
-    height: 100%;
-    width: 60%;
+    height: 97.5vh;
+    width: 30%;
     background-color: aqua;
     float: right;
 }
@@ -26,6 +26,7 @@
     background-color: greenyellow;
 }
 
+/* COMMENTED OUT IN HTML
 /* The navigation menu, where you can choose and go to different places on the website */
 .navigation {
     height: 10vh;
