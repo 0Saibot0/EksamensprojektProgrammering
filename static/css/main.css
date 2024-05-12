@@ -2,33 +2,140 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 /* Splitting the site in right and left */
 .main_page_left {
-    height: 97.5vh;
+    height: 100vh;
     width: 70%;
+    min-width: 300px;
     float: left;
-    background-color: blueviolet;
+    background-color: whitesmoke;
 }
 
+.main_page_left .site_top {
+    height: 15vh;
+    background-color: white;
+}
+.main_page_left .site_top img{
+    height: 100%;
+    float: left;
+}
+.main_page_left .site_top h1{
+    font-size: 4vh;
+    padding: 5vh;
+    color: #821b91;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
 .main_page_right {
-    height: 97.5vh;
+    height: 100vh;
     width: 30%;
-    background-color: aqua;
+    background-color: #811b9138;
     float: right;
 }
 
-/* The little bar at the very top of the site */
-.session_login {
-    height: 2.5vh;
+.main_page_right .name_badge {
+    height: 15vh;
+    background-color: #821b91;
+    
+}
+.main_page_right .name_badge h1{
+    font-size: 6vh;
+    display: flex;
+    justify-content: center;
+}
+.main_page_right .name_badge h2{
     font-size: 2vh;
-    background-color: greenyellow;
+    display: flex;
+    justify-content: center;
 }
 
-/* COMMENTED OUT IN HTML
-/* The navigation menu, where you can choose and go to different places on the website */
-.navigation {
-    height: 10vh;
-    background-color: grey;
+
+.last_result {
+    background-color: rgb(255, 255, 255);
+    border-bottom: solid black 2px;
+
+}
+.last_result h1{
+    padding-top: 20px;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;}
+.last_result img {
+    margin-top: 30px;
+    margin-left: 27%;
+    width: 200px;
+    height: 200px;    
+    border-radius: 10%;
+    border: black solid 2px;
+    margin-bottom: 170px;
+}
+
+
+
+
+.buttons {
+    width: 90%;
+    margin-left: 5%;
+}
+.buttons button{
+    height: 50px;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+.buttons #your_doctor_button{
+    width: 100%;
+}
+.buttons #pages_buttons button{
+    width: 32%;
+}
+.buttons #control_buttons button{
+    width: 49%;
+}
+
+
+
+
+
+
+
+
+
+
+.resize_window {
+    display: none;
+}
+
+
+@media (max-width: 1000px) {
+    .resize_window {
+        display: contents;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background-color: #821b91;
+        display: flex;  
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+   .resize_window h1{
+        font-size: 4vh;
+        padding: 5vh;
+        color: white;
+    }
+
 }

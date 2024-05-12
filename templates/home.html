@@ -3,27 +3,55 @@
     <!-- Setting up basic information of site -->
     <head>
         <title>HOMEPAGGGEE</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
 
-    <!--  -->
-    {% extends "header.html" %}
-    {% block content %}
+    
 
     <body>
+        <div class="resize_window">
+            <h1>Ændre venligst vinduets brede til at passe siden</h1>
+        </div>
+
         <div class="main_page_left">
-            <h1>HI</h1>
+            <div class="site_top">
+                <img src="/static/IMG/logo.png" alt="">
+                <h1>Patientforeningen Modermærkekræft</h1>
+            </div>
+            <div class="site_content">
+                <h1>World</h1>
+            </div>
         </div>
 
         <div class="main_page_right">
-            <div class="settings&logout">
-                <button>Settings</button>
-                <button>Logout</button>
+
+            <div class="name_badge">
+                <h2>Velkommen tilbage</h2>
+                <h1>Oskar Falk</h1>
+            </div>
+
+            <div class="last_result">
+                <h1>Rask</h1>
+                <img src="/static/IMG/result.jpg" alt="">
+            </div>
+
+            <div class="buttons">
+                <button id="your_doctor_button">Din Læge</button>
+
+                <div id="pages_buttons">
+                    <button>📖</button>
+                    <button>📤</button>
+                    <button>❓</button>
+                </div>
+
+                <div id="control_buttons">
+                    <button>⚙️</button>
+                    <button>🚪</button>
+                </div>
             </div>
             
-            <h1>Test</h1>
 
         </div>
     </body>
-    {% endblock %}
 
 </html>
