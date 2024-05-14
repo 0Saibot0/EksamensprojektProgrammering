@@ -6,11 +6,16 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
 
+    <script>
+        function changeIframeSrc(url) {
+            document.getElementById('frame').src = url;
+        }
+    </script>
     
 
     <body>
         <div class="resize_window">
-            <h1>Ændre venligst vinduets brede til at passe siden</h1>
+            <h1>Ændre venligst vinduets brede eller højde til at passe siden</h1>
         </div>
 
         <div class="main_page_left">
@@ -19,14 +24,14 @@
                 <h1>Patientforeningen Modermærkekræft</h1>
             </div>
             <div class="site_content">
-                <h1>World</h1>
+                <iframe id="frame" src="{{ url_for('upload') }}" frameborder="0"></iframe>
             </div>
         </div>
 
         <div class="main_page_right">
 
             <div class="name_badge">
-                <h2>Velkommen tilbage</h2>
+                <h2>Logget ind som:</h2>
                 <h1>Oskar Falk</h1>
             </div>
 
@@ -36,17 +41,17 @@
             </div>
 
             <div class="buttons">
-                <button id="your_doctor_button">Din Læge</button>
+                <a href="https://www.sundhed.dk/borger/min-side/min-sundhedsjournal/min-laege/"><button id="your_doctor_button" >Kontakt din personlige læge her</button></a>
 
                 <div id="pages_buttons">
-                    <button>📖</button>
-                    <button>📤</button>
-                    <button>❓</button>
+                    <button onclick="changeIframeSrc('/list')">📖</button>
+                    <button onclick="changeIframeSrc('/upload')">📤</button>
+                    <button onclick="changeIframeSrc('/help')">❓</button>
                 </div>
 
                 <div id="control_buttons">
-                    <button>⚙️</button>
-                    <button>🚪</button>
+                    <button onclick="changeIframeSrc('/settings')">⚙️</button>
+                    <button onclick="changeIframeSrc('/logout')">🚪</button>
                 </div>
             </div>
             
