@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, session, flash, request, jsonify
 import sqlite3
+import math
 from datetime import datetime
 from flask_session import Session
 from sqlalchemy.orm import create_session
@@ -19,7 +20,7 @@ import io
 app = Flask(__name__)
 app.config.from_object(Config)
 app.config["SESSION_PERMANENT"] = False
-app.config["SECRET_TYPE"] = "filesystem"
+app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Load the model globally so it can be used in the prediction function
@@ -127,7 +128,7 @@ def upload():
             conn = sqlite3.connect("static/db/Bruger.db")
             cursor = conn.cursor()
 
-            cursor.execute("""INSERT INTO results (User, result, date, accuracy) VALUES (?, ?, ?, ?)""", (session["name"], predicted_label, datetime.now().strftime("%d/%m - %Y"), confidence))
+            cursor.execute("""INSERT INTO results (User, result, date, accuracy) VALUES (?, ?, ?, ?)""", (session["name"], predicted_label, datetime.now().strftime("%d/%m - %Y"), math.floor(confidence)))
 
             conn.commit()
             conn.close()
@@ -136,15 +137,29 @@ def upload():
 
             print(f"Prediction made: {predicted_label} with confidence {confidence:.2f}%")
             
+            redirect("/")
+
             return render_template('upload.html', title='Upload', result=result)
         except Exception as e:
             flash(f'Error processing file: {e}')
             return redirect(request.url)
     return render_template('upload.html', title='upload')
 
+
+
 @app.route('/list/', methods=["POST", "GET"])
 def list():
-    return render_template('list.html', title='list')
+    conn = sqlite3.connect("static/db/Bruger.db")
+    cursor = conn.cursor()
+    
+    # Fetch rows where User matches the session name
+    cursor.execute("SELECT result, date, accuracy FROM results WHERE User = ?", (session["name"],))
+    results = cursor.fetchall()
+    
+    conn.close()
+    
+    return render_template('list.html', title="List", results=results)
+
 
 @app.route('/help/', methods=["POST", "GET"])
 def help():
