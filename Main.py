@@ -127,7 +127,10 @@ def upload():
             conn = sqlite3.connect("static/db/Bruger.db")
             cursor = conn.cursor()
 
-            cursor.execute("""INSERT INTO results (User, result, date, accuracy) VALUES (?, ?, ?, ?)""", (session['username'], predicted_label, datetime.now().strftime("%d/%m-%Y"), confidence))
+            cursor.execute("""INSERT INTO results (User, result, date, accuracy) VALUES (?, ?, ?, ?)""", (session["name"], predicted_label, datetime.now().strftime("%d/%m - %Y"), confidence))
+
+            conn.commit()
+            conn.close()
 
 
 
