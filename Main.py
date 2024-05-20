@@ -41,7 +41,9 @@ def login():
 
     return render_template("login.html", form=form, title='The Interrogator')
 
-@app.route('/login/', methods=["POST", "GET"])
+
+
+@app.route('/register/', methods=["POST", "GET"])
 def register():
     form = RegisterForm()
     user_session = create_session(autocommit=False, autoflush=False, bind=engine)
