@@ -86,7 +86,10 @@ def help():
 def settings():
     return render_template('settings.html', title='settings')
 
-
+@app.route("/logout/")
+def logout():
+    session["name"] = None
+    return redirect("/")
 
 # Runs app
 if __name__ == '__main__':
