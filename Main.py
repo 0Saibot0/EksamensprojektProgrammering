@@ -58,7 +58,7 @@ def register():
         new_user = Users(
             Username = form.username.data, 
             Mail = form.mail.data, 
-            Password = generate_password_hash(form.password.data, method='sha256')
+            Password = generate_password_hash(form.password.data, method='pbkdf2:sha256')
         )
         user_session.add(new_user)
         user_session.commit()
@@ -67,7 +67,7 @@ def register():
             user_session.close()
             return redirect('/login/')
     
-    return render_template('register.html', title='register')
+    return render_template('register.html', form=form, title='register')
 
 
 @app.route('/upload/', methods=["POST", "GET"])
