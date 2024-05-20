@@ -5,6 +5,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from config import Config
 from Forms import LoginForm, RegisterForm
 from dbhelper import Users, engine
+import numpy as np
+import tensorflow as tf
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.vgg19 import preprocess_input
+from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -76,7 +81,12 @@ def upload():
         uploaded_file = request.files['imageInput']
         # Now you have access to the uploaded file. You can save it, process it, etc.
         # For example, to save it to a specific directory:
-        uploaded_file.save('static/IMG/' + uploaded_file.filename)
+
+        model_path = 'model/vgg19_model.json'
+        image_path = uploaded_file
+
+        predicted_label, confidence = predict_mole(image_path, model_path)
+        print(f"The uploaded mole is predicted to be {predicted_label} with a confidence of {confidence * 100:.2f}%.")
         
     return render_template('upload.html', title='upload')
 
@@ -97,6 +107,29 @@ def logout():
     session["name"] = None
     return redirect("/")
 
+def load_and_prepare_image(image_path, target_size):
+    img = image.load_img(image_path, target_size=target_size)
+    img_array = image.img_to_array(img)
+    img_array_expanded = np.expand_dims(img_array, axis=0)
+    return preprocess_input(img_array_expanded)  # Preprocess for VGG19
+
+def predict_mole(image_path, model_path):
+    # Load the VGG19 model
+    model = load_model(model_path)
+    
+    # Prepare the image
+    prepared_image = load_and_prepare_image(image_path, target_size=(224, 224))
+    
+    # Make prediction
+    predictions = model.predict(prepared_image)
+    predicted_class_index = np.argmax(predictions, axis=1)[0]  # Get the index of the max prediction score
+    prediction_probability = predictions[0][predicted_class_index]  # Probability of the predicted class
+    
+    # Assuming class indices are {0: 'malignant', 1: 'benign', 2: 'Benign'}
+    labels = {0: 'Melanoma', 1: 'Nevus', 2: 'Seborrheic Keratosis'}  
+    predicted_label = labels[predicted_class_index]
+    
+    return predicted_label, prediction_probability
 # Runs app
 if __name__ == '__main__':
     app.run(debug=True)
