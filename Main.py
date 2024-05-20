@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, session, flash
+from flask import Flask, render_template, redirect, session, flash, request
 from flask_session import Session
 from sqlalchemy.orm import create_session
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -72,6 +72,12 @@ def register():
 
 @app.route('/upload/', methods=["POST", "GET"])
 def upload():
+    if request.method == "POST":
+        uploaded_file = request.files['imageInput']
+        # Now you have access to the uploaded file. You can save it, process it, etc.
+        # For example, to save it to a specific directory:
+        uploaded_file.save('static/IMG/' + uploaded_file.filename)
+        
     return render_template('upload.html', title='upload')
 
 @app.route('/list/', methods=["POST", "GET"])
