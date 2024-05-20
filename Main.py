@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, session, flash, request, jsonify
+import sqlite3
+from datetime import datetime
 from flask_session import Session
 from sqlalchemy.orm import create_session
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -46,13 +48,23 @@ def load_and_prepare_image(image_file) -> np.ndarray:
     img = img.resize((224, 224))  # Resize the image to 224x224 pixels
     img_array = image.img_to_array(img)
     img_array_expanded = np.expand_dims(img_array, axis=0)
+
+
+
     return preprocess_input(img_array_expanded)
 
 @app.route('/', methods=["POST", "GET"])
 def home():
     if not session.get("name"):
         return redirect("/login")
-    return render_template('home.html', title='HOME')
+    conn = sqlite3.connect("static/db/Bruger.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT result FROM results")
+    result = cursor.fetchone()[0]
+    cursor.execute("SELECT accuracy FROM results")
+    accuracy = cursor.fetchone()[0]
+    conn.close()
+    return render_template('home.html', result=result, accuracy=accuracy, title='HOME')
 
 @app.route('/login/', methods=["POST", "GET"])
 def login():
@@ -91,6 +103,7 @@ def register():
 @app.route('/upload/', methods=["POST", "GET"])
 def upload():
     if request.method == "POST":
+        print("HERE")
         if 'imageInput' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -108,6 +121,16 @@ def upload():
             result = f"The uploaded mole is predicted to be {predicted_label} with a confidence of {confidence:.2f}%."
             
             # Print statement to check if it passed through the model
+
+
+
+            conn = sqlite3.connect("static/db/Bruger.db")
+            cursor = conn.cursor()
+
+            cursor.execute("""INSERT INTO results (User, result, date, accuracy) VALUES (?, ?, ?, ?)""", (session['username'], predicted_label, datetime.now().strftime("%d/%m-%Y"), confidence))
+
+
+
             print(f"Prediction made: {predicted_label} with confidence {confidence:.2f}%")
             
             return render_template('upload.html', title='Upload', result=result)
@@ -135,3 +158,5 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
