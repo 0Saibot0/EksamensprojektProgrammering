@@ -3,6 +3,11 @@ let preview_img = document.getElementById("previewImage");
 let message = document.getElementById("message");
 let left_move = document.getElementById("left_move")
 
+import tf from '@tensorflow/tfjs';
+
+
+
+
 async function cropAndSaveImage(imageUrl, cropX, cropY, cropWidth, cropHeight, saveFileName) {
     // Create an image element
     const img = new Image();
@@ -32,7 +37,16 @@ async function cropAndSaveImage(imageUrl, cropX, cropY, cropWidth, cropHeight, s
 
     // Convert the canvas content to a data URL
     const croppedImageDataUrl = canvas.toDataURL('image/png');
+  
 
+
+    // Load the model
+    const model = await tf.loadLayersModel('vgg19_model.json');
+
+
+    // Make predictions
+    const predictions = model.predict(croppedImageDataUrl);
+    predictions.print();
 
     // Create an anchor element to trigger download
     //const link = document.createElement('a');
