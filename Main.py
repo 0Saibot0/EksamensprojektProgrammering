@@ -68,6 +68,24 @@ def register():
     return render_template('register.html', title='register')
 
 
+@app.route('/upload/', methods=["POST", "GET"])
+def upload():
+    return render_template('upload.html', title='upload')
+
+@app.route('/list/', methods=["POST", "GET"])
+def list():
+    return render_template('list.html', title='list')
+
+@app.route('/help/', methods=["POST", "GET"])
+def help():
+    return render_template('help.html', title='help')
+
+@app.route('/settings/', methods=["POST", "GET"])
+def settings():
+    return render_template('settings.html', title='settings')
+
+
+
 # Runs app
 if __name__ == '__main__':
     app.run(debug=True)

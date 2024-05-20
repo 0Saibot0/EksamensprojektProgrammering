@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <script src="/static/js/uploadscript.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
 </head>
 
-<body style="background-color: chocolate; height: 100%; width: 100%;">
+
+<body>
     <input type="file" id="imageInput" accept="image/*">
-    <img id="previewImage" src="#" alt="Preview Image" style="display: none; max-width: 300px; max-height: 300px;"> 
+    <div class="img_container">
+        <img id="previewImage" src="/static/IMG/upload.jpg" alt="Preview Image"> 
+    </div>
+    <h1>Vi gør opmærksom på at alle svar er vejledende, ved tvivl, kontakt din læge!</h1>
+    <h2 id="h2_first">Fil navn: </h2><h2 id="message">ingen fil indsat</h2>
+    <br>
+    <button id="get_result">Få resultat</button>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

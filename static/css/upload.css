@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* styles.css */
+#imageInput {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Tilpas bredde efter behov */
+}
+
+#imageInput::file-selector-button {
+    visibility: hidden;
+}
+
+
+
+#imageInput::before {
+    content: 'UPLOAD BILLEDE HER:';
+    align-content: center;
+    text-align: center;
+    font-size: 3vh;
+    font-weight: bolder;
+    display: inline-block;
+    border: 3px solid #821b91;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #811b9187;
+    color: rgb(243, 243, 243);
+    cursor: pointer;
+    width: 58%;
+    height: 8vh;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-top: 3vh;
+}
+
+#get_result {
+    align-content: center;
+    text-align: center;
+    font-size: 3vh;
+    font-weight: bolder;
+    display: inline-block;
+    border: 3px solid #25911b87;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #25911b;
+    color: rgb(243, 243, 243);
+    cursor: pointer;
+    width: 58%;
+    height: 8vh;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-top: 3vh; 
+}
+
+.img_container {
+    width: 224px; 
+    height: 224px; 
+    overflow: hidden;
+    margin-top: 10vh;
+    margin-left: 28vw;
+    border: solid 5px rgb(136, 136, 136);
+    border-radius: 10px;
+}
+
+h1 {
+    margin-top: 20vh;
+    margin-left: 5vw;
+    font-size: 4vh;
+}
+
+h2 {
+    float: left;
+    font-size: 2vh;
+}
+
+#h2_first {
+    margin-left: 5vw;
+}
+
