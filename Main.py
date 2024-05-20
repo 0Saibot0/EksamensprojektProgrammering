@@ -16,7 +16,6 @@ import os
 from PIL import Image
 import io
 
-#sss
 app = Flask(__name__)
 app.config.from_object(Config)
 app.config["SESSION_PERMANENT"] = False
@@ -24,7 +23,7 @@ app.config["SECRET_TYPE"] = "filesystem"
 Session(app)
 
 # Load the model globally so it can be used in the prediction function
-model_path = 'model/vgg19_model.keras'
+model_path = 'model/vgg19_final_model.keras'
 
 try:
     model = load_model(model_path)
