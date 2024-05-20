@@ -76,19 +76,9 @@ iframe {
 .last_result {
     background-color: rgb(255, 255, 255);
 }
-.last_result h1{
-    padding-top: 20px;
-    text-decoration: underline;
-    display: flex;
-    justify-content: center;}
-.last_result img {
-    margin-top: 30px;
-    margin-left: 27%;
-    width: 200px;
-    height: 200px;    
-    border-radius: 10%;
-    border: black solid 2px;
-    margin-bottom: 170px;
+.last_result h2{
+    text-align: center;
+    font-size: 3vh;
 }
 
 

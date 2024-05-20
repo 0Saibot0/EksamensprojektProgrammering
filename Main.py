@@ -153,7 +153,7 @@ def list():
     cursor = conn.cursor()
     
     # Fetch rows where User matches the session name
-    cursor.execute("SELECT result, date, accuracy FROM results WHERE User = ?", (session["name"],))
+    cursor.execute("SELECT result, date, accuracy FROM results WHERE User = ? ORDER BY ID DESC", (session["name"],))
     results = cursor.fetchall()
     
     conn.close()
