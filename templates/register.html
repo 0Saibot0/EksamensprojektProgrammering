@@ -1,13 +1,41 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>register</title>
-
-    </head>
+<head>
+	<title>Flask app</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head> 
 
 
-    <body>
-        <h1>Test Site</h1>
-        <p>This is a test site</p>
-    </body>
-</html>
+
+{% block y %}
+
+<div class="LoginBox" style="padding: 30px 30px 150px 30px; height: 150px; margin: 30vh auto;">
+	<h1> Register </h1>
+	<br>
+
+	<form action="" method="post" novalidate>
+		{{ form.hidden_tag() }}
+
+		<div class="Label">
+			{{ form.username.label }}
+		</div>
+		{{ form.username() }}
+		<br>
+		<div class="Label">
+			{{ form.mail.label }}
+		</div>
+		{{ form.mail() }}
+		<br>
+		<div class="Label">
+			{{ form.password.label }}
+		</div>
+		{{ form.password() }}
+		<br>
+		<br>
+		<p>By clicking submit you confirm that you agree to the <a href="www.google.com">terms & service</a></p>
+		{{ form.submit() }}
+
+
+	</form>
+</div>
+
+
+{% endblock %}

@@ -1,13 +1,31 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>login</title>
-        
-    </head>
+{% extends "base.html" %}
 
 
-    <body>
-        <h1>LOGIN</h1>
-        <p>This is a test site</p>
-    </body>
-</html>
+{% block content %}
+    <div class="account">
+        <div class="ReLog">
+            <h1> LOG IN </h1>
+        </div>
+        <br>
+    
+    <form action="" method="post" novalidate>
+        <p> Username</p>
+        {{ form.hidden_tag() }}
+        {{ form.username() }}
+        {% for error in form.username.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        <br></br>
+        <p> Password </p>
+        {{ form.password() }}
+        {% for error in form.password.errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
+        <br></br>
+        {{ form.submit() }}
+        <br>
+        Don't have an account? Click to <a href="/new_user">Register</a>
+    </form>
+</div>
+    
+    {% endblock %}
