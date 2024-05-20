@@ -10,6 +10,14 @@
         function changeIframeSrc(url) {
             document.getElementById('frame').src = url;
         }
+        
+        function logOut() {
+            // Clear the session storage
+            sessionStorage.removeItem('name');
+
+            // Reload the page
+            location.reload();
+        } 
     </script>
     
 
@@ -51,7 +59,7 @@
 
                 <div id="control_buttons">
                     <button onclick="changeIframeSrc('/settings')">⚙️</button>
-                    <button href="/logout/" onclick="changeIframeSrc('/logout')">🚪</button>
+                    <a href="/logout/"><button>🚪</button></a>
                 </div>
             </div>
             
