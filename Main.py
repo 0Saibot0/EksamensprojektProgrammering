@@ -155,7 +155,6 @@ def list():
     # Fetch rows where User matches the session name
     cursor.execute("SELECT result, date, accuracy FROM results WHERE User = ? ORDER BY ID DESC", (session["name"],))
     results = cursor.fetchall()
-    
     conn.close()
     
     return render_template('list.html', title="List", results=results)
